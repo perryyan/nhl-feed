@@ -3,7 +3,8 @@ const moment = require('moment');
 var gameScores = [];
 
 module.exports = {
-    getNHLScoreboard: function( RxHttpRequest ) {
+    getNHLScoreboard: function() {
+        const RxHttpRequest = require('rx-http-request').RxHttpRequest;
         var date = moment().format('YYYY-MM-DD');
         var observables = [];
 

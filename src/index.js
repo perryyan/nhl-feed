@@ -1,7 +1,6 @@
 var nhl = require('./nhl.js');
-var RxHttpRequest = require('rx-http-request').RxHttpRequest;
 
-nhl.getNHLScoreboard( RxHttpRequest );
+nhl.getNHLScoreboard();
 setTimeout( () => {
     console.dir( nhl.getFormattedGameScores() );
 }, 5000 );
