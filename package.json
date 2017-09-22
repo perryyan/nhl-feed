@@ -1,0 +1,21 @@
+{
+  "name": "nhl-feed",
+  "version": "0.0.1-beta",
+  "description": "NHL feed function using RxJS",
+  "main": "index.js",
+  "directories": {
+    "spec": "spec",
+    "src": "src"
+  },
+  "scripts": {
+    "test": "jasmine",
+    "start": "node src/index.js"
+  },
+  "author": "Perry Yan (perry.c.yan@gmail.com)",
+  "license": "ISC",
+  "dependencies": {
+    "jasmine": "^2.8.0",
+    "rx-http-request": "^1.2.0",
+    "rxjs": "^5.4.3"
+  }
+}
