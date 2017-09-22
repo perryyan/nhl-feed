@@ -53,33 +53,22 @@ module.exports = {
     },
 
     // Prints the following format
-    // ANA  3 | Shots: 10 [PP]
-    // LAK  0 | Shots: 21 [PP]
-    // Live - 2nd Period - 19:21
-
-    // ANA  3 | Shots: 10 [PP]
-    // LAK  0 | Shots: 21 [PP]
-    // FINAL
-
-    // ANA  3 | Shots: 10 [PP]
-    // LAK  0 | Shots: 21 [PP]
-    // Scheduled - 5:30 PM
+    // ANA 3 (SOG 10) [PP]  LAK 0 (SOG 10) [PP] / 19:21 2nd 
     getFormattedGameScores: function() {
         var output = '';
         gameScores.forEach( (game) => {
-            output += '\n' + game.awayTeam.shortName + '  ' + game.awayTeam.goals + ' | Shots: ' + game.awayTeam.shots + ( game.awayTeam.powerPlay ? '[PP]' : '' ) + ' \n';
-            output += game.homeTeam.shortName + '  ' + game.homeTeam.goals + ' | Shots: ' + game.homeTeam.shots + ( game.awayTeam.powerPlay ? '[PP]' : '' ) + ' \n';
+            output += '\n' + game.awayTeam.shortName + ' ' + game.awayTeam.goals + ' (SOG ' + game.awayTeam.shots + ')' + ( game.awayTeam.powerPlay ? '[PP]' : '' );
+            output += '  ' + game.homeTeam.shortName + ' ' + game.homeTeam.goals + ' (SOG ' + game.homeTeam.shots + ')' + ( game.awayTeam.powerPlay ? '[PP]' : '' );
             
             if( game.gameStatus === 'Live' ) {
-                output += game.gameStatus + ' - ' + game.currentPeriod + ' ' + game.currentPeriodTimeRemaining;
+                output += ' / ' + game.currentPeriodTimeRemaining + ' ' + game.currentPeriod;
             }
             else if( game.gameStatus === 'Preview' ) {
-                output += 'Scheduled' + ' - ' + moment( game.gameStartTime ).format('h:mm A');
+                output += ' / Start ' + moment( game.gameStartTime ).format('h:mm A');
             }
             else {
-                output += game.gameStatus;
+                output += ' / ' + game.gameStatus;
             }
-            output += '\n';
         });
         return output;
     }
