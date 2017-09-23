@@ -70,6 +70,9 @@ module.exports = {
                 output += ' / ' + game.gameStatus;
             }
         });
+
+        // clear out game scores
+        gameScores = [];
         return output;
     }
 };
