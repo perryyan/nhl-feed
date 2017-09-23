@@ -58,7 +58,7 @@ module.exports = {
         var output = '';
         gameScores.forEach( (game) => {
             output += '\n' + game.awayTeam.shortName + ' ' + game.awayTeam.goals + ' (SOG ' + game.awayTeam.shots + ')' + ( game.awayTeam.powerPlay ? '[PP]' : '' );
-            output += '  ' + game.homeTeam.shortName + ' ' + game.homeTeam.goals + ' (SOG ' + game.homeTeam.shots + ')' + ( game.awayTeam.powerPlay ? '[PP]' : '' );
+            output += '  ' + game.homeTeam.shortName + ' ' + game.homeTeam.goals + ' (SOG ' + game.homeTeam.shots + ')' + ( game.homeTeam.powerPlay ? '[PP]' : '' );
             
             if( game.gameStatus === 'Live' ) {
                 output += ' / ' + game.currentPeriodTimeRemaining + ' ' + game.currentPeriod;
