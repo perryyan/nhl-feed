@@ -25,8 +25,8 @@ module.exports = {
                     gameScores.push( 
                         {
                             "gameStatus": gameData.status.abstractGameState,
-                            "isOvertime": gameData.status.statusCode === '6',
-                            "isShootout": gameData.status.statusCode === '7',
+                            "isOvertime": linescore.currentPeriodOrdinal === 'OT',
+                            "isShootout": linescore.currentPeriodOrdinal === 'SO',
                             "gameStartTime": gameData.datetime.dateTime,
                             "currentPeriod": linescore.currentPeriodOrdinal,
                             "currentPeriodTimeRemaining": linescore.currentPeriodTimeRemaining,
