@@ -55,12 +55,12 @@ module.exports = {
     },
 
     // Prints the following format
-    // ANA 3 (SOG 10) [PP]  LAK 0 (SOG 10) [PP] / 19:21 2nd 
+    // ANA 3 (10) [PP]  LAK 0 (10) [PP] / 19:21 2nd 
     getFormattedGameScores: function() {
         var output = '';
         gameScores.forEach( (game) => {
-            output += '\n' + game.awayTeam.shortName + ' ' + game.awayTeam.goals + ' (' + game.awayTeam.shots + ')' + ( game.awayTeam.powerPlay ? '[PP]' : '' );
-            output += '  ' + game.homeTeam.shortName + ' ' + game.homeTeam.goals + ' (' + game.homeTeam.shots + ')' + ( game.homeTeam.powerPlay ? '[PP]' : '' );
+            output += '\n' + game.awayTeam.shortName + ' ' + game.awayTeam.goals + ' (' + game.awayTeam.shots + ')' + ( game.awayTeam.powerPlay ? ' [PP]' : '' );
+            output += '  ' + game.homeTeam.shortName + ' ' + game.homeTeam.goals + ' (' + game.homeTeam.shots + ')' + ( game.homeTeam.powerPlay ? ' [PP]' : '' );
             
             if( game.gameStatus === 'Live' ) {
                 output += ' / ' + game.currentPeriodTimeRemaining + ' ' + game.currentPeriod;
