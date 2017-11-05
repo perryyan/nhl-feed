@@ -25,6 +25,8 @@ module.exports = {
                     gameScores.push( 
                         {
                             "gameStatus": gameData.status.abstractGameState,
+                            "isOvertime": gameData.status.statusCode === '6',
+                            "isShootout": gameData.status.statusCode === '7',
                             "gameStartTime": gameData.datetime.dateTime,
                             "currentPeriod": linescore.currentPeriodOrdinal,
                             "currentPeriodTimeRemaining": linescore.currentPeriodTimeRemaining,
@@ -57,14 +59,20 @@ module.exports = {
     getFormattedGameScores: function() {
         var output = '';
         gameScores.forEach( (game) => {
-            output += '\n' + game.awayTeam.shortName + ' ' + game.awayTeam.goals + ' (SOG ' + game.awayTeam.shots + ')' + ( game.awayTeam.powerPlay ? '[PP]' : '' );
-            output += '  ' + game.homeTeam.shortName + ' ' + game.homeTeam.goals + ' (SOG ' + game.homeTeam.shots + ')' + ( game.homeTeam.powerPlay ? '[PP]' : '' );
+            output += '\n' + game.awayTeam.shortName + ' ' + game.awayTeam.goals + ' (' + game.awayTeam.shots + ')' + ( game.awayTeam.powerPlay ? '[PP]' : '' );
+            output += '  ' + game.homeTeam.shortName + ' ' + game.homeTeam.goals + ' (' + game.homeTeam.shots + ')' + ( game.homeTeam.powerPlay ? '[PP]' : '' );
             
             if( game.gameStatus === 'Live' ) {
                 output += ' / ' + game.currentPeriodTimeRemaining + ' ' + game.currentPeriod;
             }
             else if( game.gameStatus === 'Preview' ) {
                 output += ' / Start ' + moment( game.gameStartTime ).format('h:mm A');
+            }
+            else if( game.isOvertime ) {
+                output += ' / ' + 'Final OT';                
+            }
+            else if( game.isShootout ) {
+                output += ' / ' + 'Final SO';                
             }
             else {
                 output += ' / ' + game.gameStatus;
